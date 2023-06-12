@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PetitionEndpoint.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WebAndCloud</a> &gt; <a href="index.source.html" class="el_package">petition</a> &gt; <span class="el_source">PetitionEndpoint.java</span></div><h1>PetitionEndpoint.java</h1><pre class="source lang-java linenums">package petition;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.ApiMethod.HttpMethod;
+import com.google.api.server.spi.config.ApiNamespace;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.search.SortExpression.SortDirection;;
+
+@Api(
+    name = &quot;petApi&quot;,
+    version = &quot;v1&quot;,
+    audiences = &quot;595899669842-j10210tmvuepept0tneskr8ouh81h4hr.apps.googleusercontent.com&quot;,
+    clientIds = {
+        &quot;559682838482-rej4u4s7cgn3715987div24imqialps6.apps.googleusercontent.com&quot;,
+        &quot;595899669842-j10210tmvuepept0tneskr8ouh81h4hr.apps.googleusercontent.com&quot;
+    },
+    namespace = @ApiNamespace(
+        ownerDomain = &quot;miage.exemple.com&quot;,
+        ownerName = &quot;miage.exemple.com&quot;,
+        packagePath = &quot;&quot;
+    )
+)
+
+<span class="nc" id="L34">public class PetitionEndpoint {</span>
+
+    
+
+    @ApiMethod(name = &quot;petitions&quot;, httpMethod = HttpMethod.GET)
+    public List&lt;Entity&gt; petitions() {
+<span class="nc" id="L40">        Query query = new Query(&quot;Petition&quot;); //.addSort(&quot;petition&quot;, SortDirection.DESCENDING);</span>
+
+<span class="nc" id="L42">        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();</span>
+<span class="nc" id="L43">        PreparedQuery pq = ds.prepare(query);</span>
+<span class="nc" id="L44">        List&lt;Entity&gt; res = pq.asList(FetchOptions.Builder.withChunkSize(50));</span>
+
+<span class="nc" id="L46">        return res;</span>
+    }
+
+    @ApiMethod(name = &quot;addPetition&quot;, path = &quot;petition&quot;, httpMethod = HttpMethod.POST)
+    public Entity postPetittion(Petition pet){
+
+<span class="nc" id="L52">        Entity e = new Entity(&quot;Petition&quot;,&quot;1+ Pet&quot;);</span>
+
+<span class="nc" id="L54">        e.setProperty(&quot;owner&quot;, pet.owner);</span>
+<span class="nc" id="L55">        e.setProperty(&quot;subject&quot;, pet.subject);</span>
+<span class="nc" id="L56">        e.setProperty(&quot;date_publication&quot;, new Date());</span>
+<span class="nc" id="L57">        e.setIndexedProperty(&quot;description&quot;, pet.description);</span>
+<span class="nc" id="L58">        e.setIndexedProperty(&quot;counter&quot;, 0);</span>
+
+<span class="nc" id="L60">        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();</span>
+<span class="nc" id="L61">        datastore.put(e);</span>
+<span class="nc" id="L62">        return e;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
