@@ -42,6 +42,7 @@ var DiceGame={
   email:"",
   ID:"",
   url:"",
+  token: "",
   play: function() {
  	if (this.turn < 10) {
    	  this.d1 = Math.floor((Math.random() * 5) + 1);
@@ -76,9 +77,9 @@ var DiceView={
 			]),
 			m('label',{class:'label'},"Dice 1:"+DiceGame.d1),
 			m('label',{class:'label'},"Dice 2:"+DiceGame.d2),
-			DiceGame.ID === "" ? null : ('button',{
+			m('button',{
 				class: 'button is-link',
-				onclick: function(e) {DiceGame.play()},
+				onclick: function(e) {DiceGame.play()}
 			    },"play"),
 		])
 	}	
@@ -90,7 +91,7 @@ var Score = {
 	    loadList: function() {
 	        return m.request({
 	            method: "GET",
-	            url: "_ah/api/myApi/v1/topscores/"+'?access_token=' + encodeURIComponent(DiceGame.ID)
+	            url: "_ah/api/myApi/v1/topscores"+'?access_token=' + encodeURIComponent(DiceGame.token)
 	        })
 	        .then(function(result) {
 	            Score.list = result.items
@@ -102,7 +103,7 @@ var Score = {
 	    	console.log("saving...",Score.current)
 	        return m.request({
 	            method: "GET",
-	            url: "_ah/api/myApi/v1/addScore/"+score+"/"+name
+	            url: "_ah/api/myApi/v1/addScore/"+score+"/"+name+'?access_token=' + encodeURIComponent(DiceGame.token)
 	        })
 	        .then( function(result) {
 	        	console.log("got:",result)
@@ -114,7 +115,7 @@ var Score = {
 			console.log(name+" top score")
 	        return m.request({
 	            method: "GET",
-	            url: "_ah/api/myApi/v1/mytopscores/"+name
+	            url: "_ah/api/myApi/v1/mytopscores/"+name+'?access_token=' + encodeURIComponent(DiceGame.token)
 	        })
 	        .then(function(result) {
 	        	console.log("got my top score :",result)
@@ -171,13 +172,14 @@ function handleCredentialResponse(response) {
    DiceGame.email = responsePayload.email;
    DiceGame.ID = responsePayload.credential;
    DiceGame.url = responsePayload.picture;
+   DiceGame.token = response.credential;
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
     console.log('Given Name: ' + responsePayload.given_name);
     console.log('Family Name: ' + responsePayload.family_name);
     console.log("Image URL: " + responsePayload.picture);
     console.log("Email: " + responsePayload.email);
-	m.draw();
+	m.redraw();
        // const url = "_ah/api/myApi/v1/Hello"+'?access_token=' + response.credential
        // fetch(url).then(response => response.text()).then(data => document.getElementById('toto').innerHTML = data)
     //m.route.set("/secret")
