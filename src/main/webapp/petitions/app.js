@@ -1,7 +1,7 @@
 import HomeComponent from './components/homeComponent';
 import MenuComponent from './components/menuComponent';
 import PetitionsComponent from './components/petitionsComponent';
-import {User} from './auth';
+import {User} from './login';
 //const User = require('../auth').User;
 
 
@@ -14,6 +14,7 @@ const data = {
     isLoggedIn: isLoggedIn,
     user: User
 };
+
 
 
 //m.mount(document.getElementById("header"), m(MenuComponent,data));
