@@ -188,7 +188,10 @@
 	var Login = {
 	  view: function() {
 		return m('div', {class:'container'}, [
-
+		  m("div", {
+			   "id":"g_id_onload",
+			   "data-client_id":"104636050317-co6udvrjtefucqpvpp5a00i93kj8qf2r.apps.googleusercontent.com",
+			   "data-callback":"handleCredentialResponse"}),
 		  m("div", {
 			   "class":"g_id_signin",
 			   "data-type":"standard"}),

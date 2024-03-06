@@ -1,7 +1,9 @@
 const LoginButton = require('../auth').LoginButton;
+const User = require('../auth').User;
+const ImgComponent = require('../components/imgComponent');
 
 const MenuComponent = {
-    view : () => (
+    view : (vnode) => (
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">TyniPet</a>
@@ -27,8 +29,16 @@ const MenuComponent = {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <h6 class="text-white">Bienvenue</h6>
-                        <LoginButton />
+                        <div>
+                            {vnode.attrs.isLoggedIn ? (
+                                <div class="d-flex align-items-center">
+                                    <p class="px-3"> Admin</p>
+                                    <ImgComponent src={vnode.attrs.user.img} alt="Profile picture"/>
+                                </div>
+                            ) : (
+                                <LoginButton/>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
