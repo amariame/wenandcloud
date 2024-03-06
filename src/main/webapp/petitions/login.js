@@ -6,8 +6,7 @@ function handleCredentialLogin(response) {
     User.token = response.credential;
 
     console.log(response);
-    m.redraw();
-    alert('login')
+    m.redraw.sync()
 }
 
 let User = {
