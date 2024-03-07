@@ -4,8 +4,7 @@ function handleCredentialLogin(response) {
     User.img = responsePayload.picture;
     User.ID = responsePayload.sub;
     User.token = response.credential;
-
-    console.log(response);
+    console.log(User);
     m.redraw.sync()
 }
 
