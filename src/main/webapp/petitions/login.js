@@ -6,7 +6,9 @@ function handleCredentialLogin(response) {
     User.token = response.credential;
     sessionStorage.setItem('user', JSON.stringify(User));
     alert('Welcome ' + User.name);
-    User = JSON.parse(sessionStorage.getItem('user'));
+    User = sessionStorage.getItem('user') ?
+        JSON.parse(sessionStorage.getItem('user'))
+        : null;
     m.redraw();
 }
 
