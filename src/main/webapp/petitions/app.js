@@ -11,7 +11,7 @@ const isLoggedIn = sessionStorage.getItem('user') ?
 
 const data = {
     isLoggedIn: isLoggedIn,
-    user: User
+    user: JSON.parse(sessionStorage.getItem('user') )
 };
 
 

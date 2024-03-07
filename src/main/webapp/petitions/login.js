@@ -5,11 +5,12 @@ function handleCredentialLogin(response) {
     User.ID = responsePayload.sub;
     User.token = response.credential;
     sessionStorage.setItem('user', JSON.stringify(User));
-    alert('Welcome ' + User.name);
+
     User = sessionStorage.getItem('user') ?
         JSON.parse(sessionStorage.getItem('user'))
         : null;
     m.redraw();
+    window.location.reload();
 }
 
 let User = {
