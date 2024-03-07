@@ -3,6 +3,7 @@ function logout() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
     m.route.set("/");
+    window.location.reload();
 }
 
 var ImgComponent = {
