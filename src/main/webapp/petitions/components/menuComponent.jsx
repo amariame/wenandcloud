@@ -33,7 +33,7 @@ const MenuComponent = {
                         <div>
                             {vnode.attrs.isLoggedIn ? (
                                 <div class="d-flex align-items-center">
-                                    <p class="px-3"> Admin</p>
+                                    <p class="px-3"> {vnode.attrs.user.name}</p>
                                     <ImgComponent src={vnode.attrs.user.img} alt="Profile picture"/>
                                 </div>
                             ) : (
