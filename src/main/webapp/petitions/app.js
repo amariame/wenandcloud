@@ -5,7 +5,7 @@ import {User} from './login';
 //const User = require('../auth').User;
 
 
-const isLoggedIn = User.ID !== null;
+const isLoggedIn = sessionStorage.getItem('user') !== null;
 
 console.log(User);
 

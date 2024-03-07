@@ -5,6 +5,7 @@ function handleCredentialLogin(response) {
     User.ID = responsePayload.sub;
     User.token = response.credential;
     console.log(User);
+    sessionStorage.setItem('user', User);
     m.redraw.sync()
 }
 
