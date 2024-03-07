@@ -7,9 +7,6 @@ import {User} from './login';
 
 const isLoggedIn = sessionStorage.getItem('user') !== null;
 
-console.log(User);
-
-
 const data = {
     isLoggedIn: isLoggedIn,
     user: User
