@@ -5,7 +5,7 @@ import {User} from './login';
 //const User = require('../auth').User;
 
 
-const isLoggedIn = sessionStorage.getItem('user') !== null;
+const isLoggedIn = JSON.parse(sessionStorage.getItem('user') ).ID!== null;
 
 const data = {
     isLoggedIn: isLoggedIn,
