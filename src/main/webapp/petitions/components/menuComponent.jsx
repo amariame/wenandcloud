@@ -9,7 +9,7 @@ const MenuComponent = {
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">TyniPet</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarCollaalert('Welcome ' + User.name);pse" aria-controls="navbarCollapse"
+                        data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

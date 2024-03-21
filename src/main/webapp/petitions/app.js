@@ -1,6 +1,7 @@
 import HomeComponent from './components/homeComponent';
 import MenuComponent from './components/menuComponent';
-import PetitionsComponent from './components/petitionsComponent';
+import PetitionFormComponent from './components/petitionFormComponent';
+import {PetitionsComponent, PetitionDetail} from './components/petitionsComponent';
 import {User} from './login';
 //const User = require('../auth').User;
 
@@ -23,5 +24,7 @@ m.route.prefix = "#!";
 m.route(document.getElementById("app"), "/", {
     "/": HomeComponent,
     "/petitions": PetitionsComponent,
+    "/petitions/:id": PetitionDetail,
+    "/petitions/edition": PetitionFormComponent,
 });
 
