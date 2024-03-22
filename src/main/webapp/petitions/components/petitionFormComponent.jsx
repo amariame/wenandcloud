@@ -40,6 +40,10 @@ export default class PetitionFormComponent {
                 console.log(res);
                 m.route.set('/petitions')
             })
+            .catch((error) => {
+                console.log("error");
+                console.error(error); // Output the error message if the promise is rejected
+            });
     }
 
     view() {
