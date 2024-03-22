@@ -42,7 +42,8 @@ export default class PetitionFormComponent {
             })
             .catch((error) => {
                 console.log("error");
-                console.error(error); // Output the error message if the promise is rejected
+                console.error(error);
+                console.log(error)// Output the error message if the promise is rejected
             });
     }
 
