@@ -30,7 +30,8 @@ export default class PetitionFormComponent {
         console.log("removing DOM element")
     }
 
-    onsubmitForm(petition) {
+    onsubmitForm() {
+        var options;
         this.petition.id
             ? options = {method: "PUT", url: "_petition/api/apiPetition/V1/updatePetition/"+this.petition.id}
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
@@ -65,7 +66,8 @@ export default class PetitionFormComponent {
                                     onclick={()=>{m.route.set('/petitions')}}>
                                     Annuler
                                 </button>
-                                <button type="button" className="btn btn-primary">
+                                <button type="button" className="btn btn-primary"
+                                    onclick={()=>{this.onsubmitForm()}}>
                                     Valider
                                 </button>
                             </div>
