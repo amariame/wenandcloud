@@ -35,8 +35,8 @@ import java.util.List;
 
 public class PetitonEndpoint {
 
-    @ApiMethod(name = "listPetition", httpMethod = HttpMethod.GET)
-    public List<Entity> listPetition(User user) {
+    @ApiMethod(name = "listpetition", httpMethod = HttpMethod.GET)
+    public List<Entity> listpetition(User user) {
             //throws UnauthorizedException {
         /*if (user == null) {
             throw new UnauthorizedException("Invalid credentials");

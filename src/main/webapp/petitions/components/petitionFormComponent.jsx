@@ -37,7 +37,7 @@ export default class PetitionFormComponent {
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
         return m.request({
             method: "POST",
-            url: "_petition/api/apiPetition/v1/createpetition",
+            url: "/_petition/api/apiPetition/v1/createpetition",
             body: {petition: this.petition},
         })
             .then((res) => {
