@@ -49,8 +49,8 @@ public class PetitonEndpoint {
         return result;
     }
 
-    @ApiMethod(name = "createPetition", httpMethod = HttpMethod.POST)
-    public Entity createPetition(Petition petition, User user) {
+    @ApiMethod(name = "createpetition", httpMethod = HttpMethod.POST)
+    public Entity createpetition(Petition petition, User user) {
         /*throws UnauthorizedException {
 
         if (user == null) {

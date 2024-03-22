@@ -35,7 +35,11 @@ export default class PetitionFormComponent {
         this.petition.id
             ? options = {method: "PUT", url: "_petition/api/apiPetition/V1/updatePetition/"+this.petition.id}
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
-        return m.request({method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"})
+        return m.request({
+            method: "POST",
+            url: "_petition/api/apiPetition/v1/createpetition",
+            body: {petition: this.petition},
+        })
             .then((res) => {
                 console.log(res);
                 m.route.set('/petitions')
@@ -43,7 +47,7 @@ export default class PetitionFormComponent {
             .catch((error) => {
                 console.log("error");
                 console.error(error);
-                console.log(error)// Output the error message if the promise is rejected
+                console.log(error.message)// Output the error message if the promise is rejected
             });
     }
 
