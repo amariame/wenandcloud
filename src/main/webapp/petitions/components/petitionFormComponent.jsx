@@ -35,6 +35,8 @@ export default class PetitionFormComponent {
         this.petition.id
             ? options = {method: "PUT", url: "_petition/api/apiPetition/V1/updatePetition/"+this.petition.id}
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
+        console.log('data before send');
+        console.log(this.petition);
         return m.request({
             method: "POST",
             url: "/_petition/api/apiPetition/v1/createpetition",
@@ -46,8 +48,6 @@ export default class PetitionFormComponent {
             })
             .catch((error) => {
                 console.log("error");
-                console.error(error);
-                console.log(error.message)// Output the error message if the promise is rejected
             });
     }
 

@@ -29,7 +29,19 @@ export default class PetitionsComponent {
             {id: 14, title: "Quatorzième pétition", description: "Ceci est la quatorzième pétition"},
             {id: 15, title: "Quinzième pétition", description: "Ceci est la quinzième pétition"},
             {id: 16, title: "Seizième pétition", description: "Ceci est la seizième pétition"},
-        ]
+        ];
+        return m.request({
+            method: "POST",
+            url: "/_petition/api/apiPetition/v1/listpetition",
+            body: {petition: this.petition},
+        })
+            .then((res) => {
+                console.log(res);
+                //m.route.set('/petitions')
+            })
+            .catch((error) => {
+                console.log("error");
+            });
     }
     oncreate(vnode) {
         console.log("DOM created")

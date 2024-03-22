@@ -35,11 +35,11 @@ import java.util.List;
 public class PetitonEndpoint {
 
     @ApiMethod(name = "listpetition", httpMethod = HttpMethod.GET)
-    public List<Entity> listpetition(User user)
-            throws UnauthorizedException {
+    public List<Entity> listpetition(User user) {
+        /*    throws UnauthorizedException {
         if (user == null) {
             throw new UnauthorizedException("Invalid credentials");
-        }
+        }*/
 
         Query q = new Query("Petition").addSort("publication", SortDirection.DESCENDING);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -65,7 +65,7 @@ public class PetitonEndpoint {
         e.setProperty("description", petition.description);
         e.setProperty("title", petition.title);
         e.setProperty("publication", new Date());
-        //e.setProperty("subscribers", new HashSet<Owner>());
+        //e.setProperty("subscribers", new HashSet<String>());
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         

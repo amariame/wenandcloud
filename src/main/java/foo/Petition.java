@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 public class Petition {
-    Owner owner;
+    String owner;
     Date publication;
     String title;
     String description;
 
-    List<Owner> subscribers;
+    List<String> subscribers;
 
     public Petition() {}
 
