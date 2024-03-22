@@ -1,9 +1,8 @@
 import HomeComponent from './components/homeComponent';
 import MenuComponent from './components/menuComponent';
-import PetitionFormComponent from './components/petitionFormComponent';
-import {PetitionsComponent, PetitionDetail} from './components/petitionsComponent';
-import {User} from './login';
-//const User = require('../auth').User;
+import PetitionsComponent from "./components/petitionsComponent";
+import PetitionFormComponent from "./components/petitionFormComponent";
+import PetitionDetailComponent from "./components/petitionDetailComponent";
 
 
 const isLoggedIn = sessionStorage.getItem('user') ?
@@ -24,7 +23,8 @@ m.route.prefix = "#!";
 m.route(document.getElementById("app"), "/", {
     "/": HomeComponent,
     "/petitions": PetitionsComponent,
-    "/petitions/:id": PetitionDetail,
-    "/petitions/edition": PetitionFormComponent,
+    "/petitions/:id/edit": PetitionFormComponent,
+    "/petitions/:id/view": PetitionDetailComponent,
+    "/petitions/create": PetitionFormComponent,
 });
 
