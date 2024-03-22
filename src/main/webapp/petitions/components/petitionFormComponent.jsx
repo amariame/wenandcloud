@@ -5,10 +5,8 @@ export default class PetitionFormComponent {
 
     oninit(vnode) {
         console.log("initialized")
-        console.log(vnode.attrs)
         vnode.attrs.id ? this.petition = {id: 1, title: "Première pétition", description: "Ceci est la première pétition"}
-            : this.petitions = {}
-        console.log(this.petition)
+            : this.petition = {}
     }
     oncreate(vnode) {
         console.log("DOM created")
@@ -61,12 +59,15 @@ export default class PetitionFormComponent {
                             <div className="mb-3">
                                 <label htmlFor="title" className="form-label">Titre</label>
                                 <input type="text" className="form-control" id="petition-title"
-                                    value={this.petition.title ?? ""}/>
+                                    value={this.petition.title ?? ""} onkeypress={
+                                        (e) => {this.petition.title = e.target.value}
+                                    } />
 
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="description" className="form-label">Description</label>
-                                <textarea className="form-control" id="description" rows="3">
+                                <textarea className="form-control" id="description" rows="3"
+                                          onkeypress={(e)=>{this.petition.description = e.target.value}}>
                                     { this.petition.description ?? ""}
                                 </textarea>
                             </div>

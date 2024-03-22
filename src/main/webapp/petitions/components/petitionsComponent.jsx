@@ -16,24 +16,10 @@ export default class PetitionsComponent {
             {id: 1, title: "Première pétition", description: "Ceci est la première pétition"},
             {id: 2, title: "Deuxième pétition", description: "Ceci est la deuxième pétition"},
             {id: 3, title: "Troisième pétition", description: "Ceci est la troisième pétition"},
-            {id: 4, title: "Quatrième pétition", description: "Ceci est la quatrième pétition"},
-            {id: 5, title: "Cinquième pétition", description: "Ceci est la cinquième pétition"},
-            {id: 6, title: "Sixième pétition", description: "Ceci est la sixième pétition"},
-            {id: 7, title: "Septième pétition", description: "Ceci est la septième pétition"},
-            {id: 8, title: "Huitième pétition", description: "Ceci est la huitième pétition"},
-            {id: 9, title: "Neuvième pétition", description: "Ceci est la neuvième pétition"},
-            {id: 10, title: "Dixième pétition", description: "Ceci est la dixième pétition"},
-            {id: 11, title: "Onzième pétition", description: "Ceci est la onzième pétition"},
-            {id: 12, title: "Douzième pétition", description: "Ceci est la douzième pétition"},
-            {id: 13, title: "Treizième pétition", description: "Ceci est la treizième pétition"},
-            {id: 14, title: "Quatorzième pétition", description: "Ceci est la quatorzième pétition"},
-            {id: 15, title: "Quinzième pétition", description: "Ceci est la quinzième pétition"},
-            {id: 16, title: "Seizième pétition", description: "Ceci est la seizième pétition"},
         ];
         return m.request({
-            method: "POST",
-            url: "/_petition/api/apiPetition/v1/listpetition",
-            body: {petition: this.petition},
+            method: "GET",
+            url: "/_petition/api/apiPetition/v1/listpetition"
         })
             .then((res) => {
                 console.log(res);
