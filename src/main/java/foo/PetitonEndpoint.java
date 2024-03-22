@@ -5,14 +5,20 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.google.api.server.spi.config.Named;
-import com.google.api.server.spi.config.Nullable;
-import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.UnauthorizedException;
-import com.google.api.server.spi.auth.EspAuthenticator;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Transaction;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 @Api(name = "myApi",
     version = "v1",
@@ -30,7 +36,7 @@ import java.util.HashSet;
 public class PetitonEndpoint {
 
     @ApiMethod(name = "listPetition", httpMethod = HttpMethod.GET)
-    public CollectionResponse<Entity> listPetition(User user)
+    public List<Entity> listPetition(User user)
             throws UnauthorizedException {
         if (user == null) {
             throw new UnauthorizedException("Invalid credentials");
@@ -52,8 +58,8 @@ public class PetitonEndpoint {
         }
 
         Owner owner = new Owner();
-        owner.id = user.id;
-        owner.name = user.name;
+        owner.id = user.getId();
+        owner.name = user.getEmail();
 
         Entity e = new Entity("Petition");
         e.setProperty("owner", owner);
