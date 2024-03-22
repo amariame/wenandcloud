@@ -30,6 +30,17 @@ export default class PetitionFormComponent {
         console.log("removing DOM element")
     }
 
+    onsubmitForm(petition) {
+        this.petition.id
+            ? options = {method: "PUT", url: "_petition/api/apiPetition/V1/updatePetition/"+this.petition.id}
+            : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
+        return m.request({method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"})
+            .then((res) => {
+                console.log(res);
+                m.route.set('/petitions')
+            })
+    }
+
     view() {
         return (
             <div className="container">

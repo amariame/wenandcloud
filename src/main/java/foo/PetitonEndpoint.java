@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-@Api(name = "myApi",
+@Api(name = "apiPetition",
     version = "v1",
     audiences = "104636050317-co6udvrjtefucqpvpp5a00i93kj8qf2r.apps.googleusercontent.com",
     clientIds = {"104636050317-co6udvrjtefucqpvpp5a00i93kj8qf2r.apps.googleusercontent.com",
@@ -36,11 +36,11 @@ import java.util.List;
 public class PetitonEndpoint {
 
     @ApiMethod(name = "listPetition", httpMethod = HttpMethod.GET)
-    public List<Entity> listPetition(User user)
-            throws UnauthorizedException {
-        if (user == null) {
+    public List<Entity> listPetition(User user) {
+            //throws UnauthorizedException {
+        /*if (user == null) {
             throw new UnauthorizedException("Invalid credentials");
-        }
+        }*/
 
         Query q = new Query("Petition").addSort("publication", SortDirection.DESCENDING);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -50,12 +50,12 @@ public class PetitonEndpoint {
     }
 
     @ApiMethod(name = "createPetition", httpMethod = HttpMethod.POST)
-    public Entity createPetition(Petition petition, User user)
-        throws UnauthorizedException {
+    public Entity createPetition(Petition petition, User user) {
+        /*throws UnauthorizedException {
 
         if (user == null) {
             throw new UnauthorizedException("Invalid credentials");
-        }
+        }*/
 
         Owner owner = new Owner();
         owner.id = user.getId();
