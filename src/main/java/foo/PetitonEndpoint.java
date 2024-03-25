@@ -41,7 +41,7 @@ public class PetitonEndpoint {
             throw new UnauthorizedException("Invalid credentials");
         }*/
 
-        Query q = new Query("Petition").addSort("publication", SortDirection.DESCENDING);
+        Query q = new Query("Petition"); //.addSort("publication", SortDirection.DESCENDING);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery pq = datastore.prepare(q);
         List<Entity> result = pq.asList(FetchOptions.Builder.withLimit(100));
