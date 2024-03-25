@@ -34,7 +34,7 @@ import java.util.List;
 
 public class PetitonEndpoint {
 
-    @ApiMethod(name = "listpetition", httpMethod = HttpMethod.GET)
+    @ApiMethod(name = "petions", httpMethod = HttpMethod.GET)
     public List<Entity> listpetition() {
         /*    throws UnauthorizedException {
         if (user == null) {
