@@ -26,6 +26,7 @@ export default class PetitionsComponent {
                 res.items.map((item) => {
                     this.petitions.push({...item.properties, id:item.key.id});
                 });
+                console.log(this.petitions);
                 //m.route.set('/petitions')
             })
             .catch((error) => {
