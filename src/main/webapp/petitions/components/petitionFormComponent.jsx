@@ -1,6 +1,8 @@
 export default class PetitionFormComponent {
+
+    petition = {}
     constructor(vnode) {
-        this.petition = {}
+
     }
 
     oninit(vnode) {
@@ -61,14 +63,14 @@ export default class PetitionFormComponent {
                                 <label htmlFor="title" className="form-label">Titre</label>
                                 <input type="text" className="form-control" id="petition-title" name={"title"}
                                     value={this.petition.title ?? ""}
-                                       onkeypress={(e) => {this.petition.title = e.target.value}}
+                                       oninput={(e) => {this.petition.title = e.target.value}}
                                 />
 
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="description" className="form-label">Description</label>
                                 <textarea className="form-control" id="description" rows="3" name={"description"}
-                                          onkeypress={(e)=>{this.petition.description = e.target.value}}>
+                                          oninput={(e)=>{this.petition.description = e.target.value}}>
                                     { this.petition.description ?? ""}
                                 </textarea>
                             </div>
