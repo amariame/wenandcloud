@@ -48,6 +48,15 @@ public class PetitonEndpoint {
         return result;
     }
 
+    @ApiMethod(name = "petitionliste", httpMethod = HttpMethod.GET)
+    public List<Entity> petitionliste() {
+        Query q = new Query("Petition").addSort("publication", SortDirection.DESCENDING);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery pq = datastore.prepare(q);
+        List<Entity> result = pq.asList(FetchOptions.Builder.withLimit(100));
+        return result;
+    }
+
     @ApiMethod(name = "createpetition", httpMethod = HttpMethod.POST)
     public Entity createpetition(Petition petition) {
         /*throws UnauthorizedException {
