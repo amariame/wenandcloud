@@ -1,6 +1,6 @@
 export default class PetitionDetailComponent {
     constructor(vnode) {
-        this.petitions = {}
+        this.petition = {}
     }
 
     oninit(vnode) {
@@ -11,10 +11,6 @@ export default class PetitionDetailComponent {
         })
             .then((res) => {
                 console.log(res);
-                res.items.map((item) => {
-                    this.petitions.push({...item.properties, id:item.key.id});
-                });
-                //m.route.set('/petitions')
             })
             .catch((error) => {
                 console.log("error");
