@@ -60,12 +60,12 @@ public class PetitonEndpoint {
         owner.id = user.getId();
         owner.name = user.getEmail();*/
 
-        System.out.println("Petition: " + petition.title + " " + petition.description);
+        System.out.println("Petition: " + petition.getTitle() + " " + petition.getDescription());
 
         Entity e = new Entity("Petition");
         e.setProperty("owner", "owner");
-        e.setProperty("description", petition.description);
-        e.setProperty("title", petition.title);
+        e.setProperty("description", petition.getDescription());
+        e.setProperty("title", petition.getTitle());
         e.setProperty("publication", new Date());
         //e.setProperty("subscribers", new HashSet<String>());
 

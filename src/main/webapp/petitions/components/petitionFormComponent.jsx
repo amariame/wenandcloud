@@ -36,6 +36,7 @@ export default class PetitionFormComponent {
             ? options = {method: "PUT", url: "_petition/api/apiPetition/V1/updatePetition/"+this.petition.id}
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
         console.log('data before send');
+        this.petition.id = 14;
         console.log(this.petition);
         return m.request({
             method: "POST",
