@@ -38,7 +38,8 @@ export default class PetitionFormComponent {
         return m.request({
             method: "POST",
             url: "/_petition/api/apiPetition/v1/createpetition",
-            body: {petition: this.petition},
+            body: this.petition,
+            serialize: JSON
         })
             .then((res) => {
                 console.log(res);
