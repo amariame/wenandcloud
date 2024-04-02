@@ -22,4 +22,14 @@ let User = {
     email: "",
 }
 
-module.exports = { handleCredentialLogin, User};
+const isLoggedIn = sessionStorage.getItem('user') ?
+    JSON.parse(sessionStorage.getItem('user') ).ID!== null
+    : false;
+
+const data = {
+    isLoggedIn: isLoggedIn,
+    user: JSON.parse(sessionStorage.getItem('user') ),
+    token: '?access_token=' + encodeURIComponent(User.token)
+};
+
+module.exports = { handleCredentialLogin, User, data};

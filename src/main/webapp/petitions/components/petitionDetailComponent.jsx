@@ -5,7 +5,21 @@ export default class PetitionDetailComponent {
 
     oninit(vnode) {
         console.log("initialized")
-        console.log(vnode.attrs)
+        return m.request({
+            method: "GET",
+            url: "/_petition/api/apiPetition/v1/getPetition?id"+vnode.attrs.id
+        })
+            .then((res) => {
+                console.log(res);
+                res.items.map((item) => {
+                    this.petitions.push({...item.properties, id:item.key.id});
+                });
+                //m.route.set('/petitions')
+            })
+            .catch((error) => {
+                console.log("error");
+                console.error(error);
+            });
         this.petition = {id: 1, title: "Première pétition", description: "Ceci est la première pétition"}
     }
     oncreate(vnode) {

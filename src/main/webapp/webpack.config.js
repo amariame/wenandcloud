@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+var path = require("path");
 
 module.exports = {
     module: {
@@ -17,7 +18,8 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            m: "mithril"
+            m: "mithril",
+            data: [path.resolve(__dirname, 'petitions/login.js'), 'data'],
         }),
     ]
 }

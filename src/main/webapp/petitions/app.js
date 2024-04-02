@@ -10,12 +10,6 @@ const isLoggedIn = sessionStorage.getItem('user') ?
     JSON.parse(sessionStorage.getItem('user') ).ID!== null
     : false;
 
-global.data = {
-    isLoggedIn: isLoggedIn,
-    user: JSON.parse(sessionStorage.getItem('user') ),
-    token: '?access_token=' + encodeURIComponent(User.token)
-};
-
 
 
 //m.mount(document.getElementById("header"), m(MenuComponent,data));
