@@ -23,6 +23,9 @@ export default class PetitionsComponent {
         })
             .then((res) => {
                 console.log(res);
+                res.items.map((item) => {
+                    this.petitions.push(item.properties);
+                });
                 //m.route.set('/petitions')
             })
             .catch((error) => {
