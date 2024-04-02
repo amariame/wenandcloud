@@ -19,7 +19,7 @@ export default class PetitionsComponent {
         ];
         return m.request({
             method: "GET",
-            url: "/_petition/api/apiPetition/v1/petitions"
+            url: "/_petition/api/apiPetition/v1/listpetition"
         })
             .then((res) => {
                 console.log(res);
