@@ -44,21 +44,16 @@ public class PetitonEndpoint {
     }
 
     @ApiMethod(name = "createpetition", httpMethod = HttpMethod.POST)
-    public Entity createpetition(Petition petition) {
-        /*throws UnauthorizedException {
+    public Entity createpetition(User user, Petition petition)
+    throws UnauthorizedException {
 
         if (user == null) {
             throw new UnauthorizedException("Invalid credentials");
         }
 
-        Owner owner = new Owner();
-        owner.id = user.getId();
-        owner.name = user.getEmail();*/
-
-        System.out.println("Petition: " + petition.getTitle() + " " + petition.getDescription());
 
         Entity e = new Entity("Petition");
-        e.setProperty("owner", "owner");
+        e.setProperty("owner", user.getEmail());
         e.setProperty("description", petition.getDescription());
         e.setProperty("title", petition.getTitle());
         e.setProperty("publication", new Date());
@@ -71,4 +66,16 @@ public class PetitonEndpoint {
         txn.commit();
         return e;
     }
+
+    @ApiMethod(name = "getPetition", httpMethod = HttpMethod.GET)
+    public Entity getPetition(@Named("id") String id) {
+        Key k = KeyFactory.createKey("Petition", id);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        try {
+            return datastore.get(k);
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
+    }
+
 }

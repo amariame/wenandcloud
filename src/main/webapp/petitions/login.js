@@ -4,6 +4,7 @@ function handleCredentialLogin(response) {
     User.img = responsePayload.picture;
     User.ID = responsePayload.sub;
     User.token = response.credential;
+    User.email = responsePayload.email;
     sessionStorage.setItem('user', JSON.stringify(User));
 
     User = sessionStorage.getItem('user') ?
@@ -18,6 +19,7 @@ let User = {
     img: "",
     ID: null,
     token: "",
+    email: "",
 }
 
 module.exports = { handleCredentialLogin, User};

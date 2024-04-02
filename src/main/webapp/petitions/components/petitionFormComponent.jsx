@@ -37,10 +37,11 @@ export default class PetitionFormComponent {
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
         console.log('data before send');
         this.petition.id = 14;
+        this.petition.owner =
         console.log(this.petition);
         return m.request({
             method: "POST",
-            url: "/_petition/api/apiPetition/v1/createpetition",
+            url: "/_petition/api/apiPetition/v1/createpetition"+data.token,
             body: this.petition,
             serialize: JSON
         })

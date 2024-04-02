@@ -3,15 +3,17 @@ import MenuComponent from './components/menuComponent';
 import PetitionsComponent from "./components/petitionsComponent";
 import PetitionFormComponent from "./components/petitionFormComponent";
 import PetitionDetailComponent from "./components/petitionDetailComponent";
+import {User} from "./login";
 
 
 const isLoggedIn = sessionStorage.getItem('user') ?
     JSON.parse(sessionStorage.getItem('user') ).ID!== null
     : false;
 
-const data = {
+global.data = {
     isLoggedIn: isLoggedIn,
-    user: JSON.parse(sessionStorage.getItem('user') )
+    user: JSON.parse(sessionStorage.getItem('user') ),
+    token: '?access_token=' + encodeURIComponent(User.token)
 };
 
 

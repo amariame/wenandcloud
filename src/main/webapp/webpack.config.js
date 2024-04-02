@@ -16,6 +16,8 @@ module.exports = {
         extensions: [".js", ".jsx"],
     },
     plugins: [
-        new webpack.ProvidePlugin({m: "mithril"}),
+        new webpack.ProvidePlugin({
+            m: "mithril"
+        }),
     ]
 }
