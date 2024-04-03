@@ -12,7 +12,6 @@ export default class PetitionFormComponent {
     }
     oncreate(vnode) {
         console.log("DOM created")
-        console.log(data)
     }
     onbeforeupdate(newVnode, oldVnode) {
         return true
