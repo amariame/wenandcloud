@@ -7,7 +7,7 @@ export default class PetitionDetailComponent {
         console.log("initialized")
         return m.request({
             method: "GET",
-            url: "/_petition/api/apiPetition/v1/getpetition/"+vnode.attrs.id
+            url: "/_petition/api/apiPetition/v1/petitionget"
         })
             .then((res) => {
                 console.log(res);

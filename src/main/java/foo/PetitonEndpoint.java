@@ -82,4 +82,15 @@ public class PetitonEndpoint {
         }
     }
 
+    @ApiMethod(name = "petitionget", httpMethod = HttpMethod.GET)
+    public List<Entity> petitionget() {
+        Key k = KeyFactory.createKey("Petition", "5714489739575296");
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        try {
+            return datastore.get(k);
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
+    }
+
 }
