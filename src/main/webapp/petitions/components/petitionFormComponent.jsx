@@ -12,6 +12,7 @@ export default class PetitionFormComponent {
     }
     oncreate(vnode) {
         console.log("DOM created")
+        console.log(data)
     }
     onbeforeupdate(newVnode, oldVnode) {
         return true
@@ -36,7 +37,7 @@ export default class PetitionFormComponent {
             ? options = {method: "PUT", url: "_petition/api/apiPetition/V1/updatePetition/"+this.petition.id}
             : options = {method: "POST", url: "_petition/api/apiPetition/V1/createPetition/"}
         console.log('data before send');
-        this.petition.id = 14;
+        this.petition.id = "";
         this.petition.owner = data.user.email;
         console.log(this.petition);
         return m.request({

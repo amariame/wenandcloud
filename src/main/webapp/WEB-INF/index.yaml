@@ -1,11 +1,6 @@
 indexes:
-- kind: Friend 
+- kind: Petition
   properties: 
-    - name: friends 
-    - name: age
+    - name: owner
+    - name: publication
 
-- kind: Score
-  properties:
-    - name: name
-    - name: score
-      direction: desc
