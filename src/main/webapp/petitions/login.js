@@ -22,13 +22,21 @@ let User = {
     email: "",
 }
 
-const isLoggedIn = sessionStorage.getItem('user') ?
-    JSON.parse(sessionStorage.getItem('user') ).ID!== null
-    : false;
+User = sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user') )
+    : {
+        name: "",
+        img: "",
+        ID: null,
+        token: "",
+        email: "",
+    };
 
-const data = {
+const isLoggedIn = User.ID !== null;
+
+let data = {
     isLoggedIn: isLoggedIn,
-    user: JSON.parse(sessionStorage.getItem('user') ),
+    user: User,
     token: '?access_token=' + encodeURIComponent(User.token)
 };
 
