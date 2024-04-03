@@ -11,6 +11,7 @@ export default class PetitionDetailComponent {
         })
             .then((res) => {
                 console.log(res);
+                this.petition = {...res.properties, id:res.key.id};
             })
             .catch((error) => {
                 console.log("error");

@@ -7,8 +7,22 @@ export default class PetitionFormComponent {
 
     oninit(vnode) {
         console.log("initialized")
-        vnode.attrs.id ? this.petition = {id: 1, title: "Première pétition", description: "Ceci est la première pétition"}
-            : this.petition = {}
+        if(vnode.attrs.id) {
+            return m.request({
+                method: "GET",
+                url: "/_petition/api/apiPetition/v1/petitionget/"+vnode.attrs.id
+            })
+                .then((res) => {
+                    console.log(res);
+                    this.petition = {...res.properties, id:res.key.id};
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.error(error);
+                });
+        } else {
+            this.petition = {}
+        }
     }
     oncreate(vnode) {
         console.log("DOM created")
