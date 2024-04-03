@@ -7,7 +7,7 @@ export default class PetitionDetailComponent {
         console.log("initialized")
         return m.request({
             method: "GET",
-            url: "/_petition/api/apiPetition/v1/petitionget"
+            url: "/_petition/api/apiPetition/v1/petitionget/"+vnode.attrs.id
         })
             .then((res) => {
                 console.log(res);
@@ -16,7 +16,7 @@ export default class PetitionDetailComponent {
                 console.log("error");
                 console.error(error);
             });
-        this.petition = {id: 1, title: "Première pétition", description: "Ceci est la première pétition"}
+        //this.petition = {id: 1, title: "Première pétition", description: "Ceci est la première pétition"}
     }
     oncreate(vnode) {
         console.log("DOM created")

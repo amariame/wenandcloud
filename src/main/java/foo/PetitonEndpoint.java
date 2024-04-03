@@ -83,8 +83,8 @@ public class PetitonEndpoint {
     }
 
     @ApiMethod(name = "petitionget", httpMethod = HttpMethod.GET)
-    public Entity petitionget() {
-        Key k = KeyFactory.createKey("Petition", "5714489739575296");
+    public Entity petitionget(@Named("id") String id) {
+        Key k = KeyFactory.createKey("Petition", id);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         try {
             return datastore.get(k);
