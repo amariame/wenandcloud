@@ -71,20 +71,10 @@ public class PetitonEndpoint {
         return e;
     }
 
-    @ApiMethod(name = "getpetition", httpMethod = HttpMethod.GET)
-    public Entity getpetition(@Named("id") String id) {
-        Key k = KeyFactory.createKey("Petition", id);
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        try {
-            return datastore.get(k);
-        } catch (EntityNotFoundException e) {
-            return null;
-        }
-    }
 
     @ApiMethod(name = "petitionget", httpMethod = HttpMethod.GET)
     public Entity petitionget(@Named("id") String id) {
-        Key k = KeyFactory.createKey("Petition id:", id);
+        Key k = KeyFactory.createKey("Petition", Long.parseLong(id));
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         try {
             return datastore.get(k);
