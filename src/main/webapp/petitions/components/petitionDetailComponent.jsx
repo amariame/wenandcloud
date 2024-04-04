@@ -42,11 +42,19 @@ export default class PetitionDetailComponent {
     view() {
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <h1>{this.petition.title}</h1>
+                <div className="row g-5">
+                    <article className="blog-post">
+                        <h2 className="blog-post-title">{this.petition.title}</h2>
+                        <p className="blog-post-meta">{this.petition.publication} by {this.petition.owner}</p>
+                        <p>
+                            <m.route.Link href={`/petitions/sign/${petition.id}/data.user.email`}
+                                          className="btn btn-outline-primary">
+                                Signer
+                            </m.route.Link>
+                        </p>
+                        <hr></hr>
                         <p>{this.petition.description}</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         )

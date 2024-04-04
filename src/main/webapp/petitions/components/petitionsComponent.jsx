@@ -11,12 +11,7 @@ export default class PetitionsComponent {
     }
 
     oninit(vnode) {
-        console.log("initialized")
-        this.petitions = [
-            {id: 1, title: "Première pétition", description: "Ceci est la première pétition"},
-            {id: 2, title: "Deuxième pétition", description: "Ceci est la deuxième pétition"},
-            {id: 3, title: "Troisième pétition", description: "Ceci est la troisième pétition"},
-        ];
+
         return m.request({
             method: "GET",
             url: "/_petition/api/apiPetition/v1/petitionliste"
