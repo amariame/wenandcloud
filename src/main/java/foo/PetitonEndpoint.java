@@ -1,5 +1,10 @@
 package foo;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
+
 import com.google.api.server.spi.auth.common.User;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -61,7 +66,7 @@ public class PetitonEndpoint {
         e.setProperty("description", petition.getDescription());
         e.setProperty("title", petition.getTitle());
         e.setProperty("publication", new Date());
-        //e.setProperty("subscribers", new HashSet<String>());
+        e.setProperty("subscribers", new HashSet<String>());
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         
@@ -81,6 +86,43 @@ public class PetitonEndpoint {
         } catch (EntityNotFoundException e) {
             return null;
         }
+    }
+
+    @ApiMethod(name="signPetition", httpMethod = HttpMethod.GET)
+    public Entity signPetition(User user, @Named("id") String id) throws UnauthorizedException {
+        if (user == null) {
+            throw new UnauthorizedException("Invalid credentials");
+        }
+        Key k = KeyFactory.createKey("Petition", Long.parseLong(id));
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        try {
+            Entity e = datastore.get(k);
+            HashSet<String> subscribers = (HashSet<String>) e.getProperty("subscribers");
+            subscribers.add(user.getEmail());
+            e.setProperty("subscribers", subscribers);
+            Transaction txn = datastore.beginTransaction();
+            datastore.put(e);
+            txn.commit();
+            return e;
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
+    }
+
+    @ApiMethod(name = "getPetitionsByOwner", httpMethod = ApiMethod.HttpMethod.GET)
+    public List<Entity> getPetitionsByOwner(User user) throws UnauthorizedException {
+        if (user == null) {
+            throw new UnauthorizedException("Invalid credentials");
+        }
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Query.Filter filter = new Query.FilterPredicate("owner", Query.FilterOperator.EQUAL, user.getEmail());
+        Query query = new Query("Petition").setFilter(filter);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        List<Entity> petitions = new ArrayList<Entity>();
+        for (Entity petitionEntity : preparedQuery.asIterable()) {
+            petitions.add(petitionEntity);
+        }
+        return petitions;
     }
 
 }

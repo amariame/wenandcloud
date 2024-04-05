@@ -3,7 +3,7 @@ import MenuComponent from './components/menuComponent';
 import PetitionsComponent from "./components/petitionsComponent";
 import PetitionFormComponent from "./components/petitionFormComponent";
 import PetitionDetailComponent from "./components/petitionDetailComponent";
-import {User} from "./login";
+
 
 
 const isLoggedIn = sessionStorage.getItem('user') ?
@@ -19,6 +19,7 @@ m.route.prefix = "#!";
 m.route(document.getElementById("app"), "/", {
     "/": HomeComponent,
     "/petitions": PetitionsComponent,
+    "/mes-petitions": PetitionsComponent,
     "/petitions/:id/edit": PetitionFormComponent,
     "/petitions/:id/view": PetitionDetailComponent,
     "/petitions/create": PetitionFormComponent,

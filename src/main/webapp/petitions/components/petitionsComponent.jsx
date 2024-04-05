@@ -1,20 +1,36 @@
 export default class PetitionsComponent {
     constructor(vnode) {
-        this.count = 0
-        this.petitions = []
+
+        this.petitions = [];
+        this.isMyPet = false;
     }
-    increment() {
-        this.count += 1
-    }
-    decrement() {
-        this.count -= 1
+
+    signPetition(petitionId){
+        return m.request({
+            metod: "GET",
+            url: "/_petition/api/apiPetition/v1/signPetition/"+petitionId
+        })
+            .then((res) => {
+                console.log(res);
+                this.petitions.push({...res.properties, id:res.key.id});
+                console.log(this.petitions);
+                //m.route.set('/petitions')
+            })
+            .catch((error) => {
+                console.log("error");
+                console.error(error);
+            });
     }
 
     oninit(vnode) {
 
+
+
         return m.request({
             method: "GET",
-            url: "/_petition/api/apiPetition/v1/petitionliste"
+            url: this.isMyPet
+                ? "/_petition/api/apiPetition/v1/getPetitionsByOwner"
+                : "/_petition/api/apiPetition/v1/petitionliste"
         })
             .then((res) => {
                 console.log(res);
@@ -31,12 +47,15 @@ export default class PetitionsComponent {
     }
     oncreate(vnode) {
         console.log("DOM created")
+        this.isMyPet  = m.route.get() === "/mes-petitions"
     }
     onbeforeupdate(newVnode, oldVnode) {
         return true
     }
     onupdate(vnode) {
         console.log("DOM updated")
+        this.isMyPet  = m.route.get() === "/mes-petitions"
+        this.oninit(vnode)
     }
     onbeforeremove(vnode) {
         console.log("exit animation can start")
@@ -52,9 +71,12 @@ export default class PetitionsComponent {
     view() {
         return (
             <div className="container">
-                <m.route.Link href="/petitions/create" className="btn btn-primary">
-                    Poster une pétition
-                </m.route.Link>
+
+                {this.isMyPet ?
+                    (<m.route.Link href="/petitions/create" className="btn btn-primary">
+                        Poster une pétition
+                    </m.route.Link>) :("")
+                }
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {this.petitions.map(petition => (
                         <div className="col">
@@ -74,12 +96,18 @@ export default class PetitionsComponent {
                                                           className="btn btn-outline-primary">
                                                 Détails
                                             </m.route.Link>
-                                            <m.route.Link href={`/petitions/${petition.id}/edit`}
-                                                          className="btn btn-outline-primary">
-                                                Edit
-                                            </m.route.Link>
+                                            {this.isMyPet ?
+                                            (<m.route.Link href={`/petitions/${petition.id}/edit`}
+                                                              className="btn btn-outline-primary">
+                                                    Edit
+                                                </m.route.Link>)
+                                            :(<button type="button" className="btn btn-sm btn-outline-secondary"
+                                                    onclick={()=>this.signPetition(petition.id)}>
+                                                    Signer
+                                                </button>)
+                                            }
                                         </div>
-                                        <small className="text-muted">9 mins</small>
+                                        <small className="text-muted">{petition.publication}</small>
                                     </div>
                                 </div>
                             </div>

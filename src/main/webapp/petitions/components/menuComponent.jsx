@@ -25,9 +25,6 @@ const MenuComponent = {
                         <li class="nav-item">
                             <m.route.Link className="nav-link" href="/mes-petitions">Mes pétition</m.route.Link>
                         </li>
-                        <li class="nav-item">
-                            <m.route.Link className="nav-link" href="/apropos">Apropos</m.route.Link>
-                        </li>
                     </ul>
                     <div class="d-flex">
                         <div>
