@@ -6,7 +6,7 @@ export default class PetitionDetailComponent {
     signPetition(petitionId){
         return m.request({
             metod: "GET",
-            url: "/_petition/api/apiPetition/v1/signPetition/"+petitionId
+            url: "/_petition/api/apiPetition/v1/signPetition/"+petitionId+data.token
         })
             .then((res) => {
                 console.log(res);
