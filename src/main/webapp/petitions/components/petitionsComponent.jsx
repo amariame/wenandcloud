@@ -55,7 +55,6 @@ export default class PetitionsComponent {
     onupdate(vnode) {
         console.log("DOM updated")
         this.isMyPet  = m.route.get() === "/mes-petitions"
-        this.oninit(vnode)
     }
     onbeforeremove(vnode) {
         console.log("exit animation can start")
